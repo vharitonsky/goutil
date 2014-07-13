@@ -1,4 +1,4 @@
-package lineutils
+package goutil
 
 import(
     "os"
@@ -7,7 +7,7 @@ import(
     "log"
 )
 
-func readLines(file_path string) chan string {
+func ReadLines(file_path string) chan string {
 	ch := make(chan string)
 	go func() {
 		file, err := os.Open(file_path)
@@ -28,7 +28,7 @@ func readLines(file_path string) chan string {
 	return ch
 }
 
-func splitLine(line string) (string, string) {
+func SplitLine(line string) (string, string) {
 	parts := strings.Split(line, "|")
 	return parts[0], parts[1]
 }
