@@ -1,10 +1,10 @@
 package goutil
 
-import(
-    "os"
-    "bufio"
-    "strings"
-    "log"
+import (
+	"bufio"
+	"log"
+	"os"
+	"strings"
 )
 
 func ReadLines(file_path string) chan string {
