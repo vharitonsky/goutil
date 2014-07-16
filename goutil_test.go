@@ -30,7 +30,20 @@ func TestMergeChannels(t *testing.T){
     if out4 != "3"{
         t.Error("Last message from channel should be 4, got", out4)
     }
+}
 
-
-
+func TestReadLines(t *testing.T){
+    lines := []string{}
+    for line := range(ReadLines("test_lines.txt")){
+        lines = append(lines, line)
+    }
+    if lines[0] != "First Line"{
+        t.Error("First Line was expected, got", lines[0])
+    }
+    if lines[1] != "Second Line"{
+        t.Error("Second Line was expected got", lines[1])
+    }
+    if len(lines) != 2{
+        t.Error("There should only be 2 lines, got", len(lines))    
+    }
 }
