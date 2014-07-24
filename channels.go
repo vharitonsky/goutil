@@ -4,11 +4,11 @@ import (
 	"sync"
 )
 
-func MergeChannels(cs []chan string) chan string {
+func MergeChannels(cs []chan interface{}) chan interface{} {
 	var wg sync.WaitGroup
-	out := make(chan string)
+	out := make(chan interface{})
 
-	output := func(c chan string) {
+	output := func(c chan interface{}) {
 		for n := range c {
 			out <- n
 		}
@@ -24,4 +24,16 @@ func MergeChannels(cs []chan string) chan string {
 		close(out)
 	}()
 	return out
+}
+
+func SliceChannel(ch chan interface{}, sliceLen uint) (out chan interface{}) {
+	out = make(chan interface{})
+	go func() {
+		for i := 0; i < int(sliceLen); i++ {
+			temp := <-ch
+			out <- temp
+		}
+		close(out)
+	}()
+	return
 }
