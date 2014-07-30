@@ -83,3 +83,8 @@ func TestSliceChannel(t *testing.T) {
 		t.Error("Last element should be 5 got", fibs[3])
 	}
 }
+
+func TestTimer(t *testing.T) {
+	timer := NewTimer()
+	defer timer.Elapsed("Testing")
+}
