@@ -4,6 +4,7 @@ import (
 	"sync"
 )
 
+//Merges a provided list of channels into one, for cases when you want to launch multiple goroutines producing similar content.
 func MergeChannels(cs []chan interface{}) chan interface{} {
 	var wg sync.WaitGroup
 	out := make(chan interface{})
@@ -26,6 +27,7 @@ func MergeChannels(cs []chan interface{}) chan interface{} {
 	return out
 }
 
+//Returns a slice of a channel, to calculate for example first 24 fibs from an indefinite fibs generator.
 func SliceChannel(ch chan interface{}, sliceLen uint) (out chan interface{}) {
 	out = make(chan interface{})
 	go func() {
