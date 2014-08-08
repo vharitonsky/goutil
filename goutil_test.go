@@ -88,3 +88,29 @@ func TestTimer(t *testing.T) {
 	timer := NewTimer()
 	defer timer.Elapsed("Testing")
 }
+
+func TestSet(t *testing.T) {
+	strings_a := []interface{}{"a", "b", "c", "d"}
+	strings_b := []interface{}{"b", "c", "d", "f", "g"}
+	set_of_strings_a := NewSet(strings_a)
+	set_of_strings_b := NewSet(strings_b)
+	set_of_strings_c := set_of_strings_a.Intersection(set_of_strings_b)
+	if !set_of_strings_c.Equals(NewSet([]interface{}{"b", "c", "d"})) {
+		t.Error("Intersection should be 'c', 'd'", set_of_strings_c)
+	}
+	set_of_strings_d := set_of_strings_a.Union(set_of_strings_b)
+	if !set_of_strings_d.Equals(NewSet([]interface{}{"a", "b", "c", "d", "f", "g"})) {
+		t.Error("Union should be 'a' 'b' c' 'd' 'f' 'g'", set_of_strings_d)
+	}
+	set_of_strings_e := set_of_strings_a.Difference(set_of_strings_b)
+	if !set_of_strings_e.Equals(NewSet([]interface{}{"a"})) {
+		t.Error("Difference should be 'a' 'b'", set_of_strings_d)
+	}
+	popped := set_of_strings_e.Pop()
+	if popped != "a" {
+		t.Error("Popped should be 'a'", popped)
+	}
+	if !set_of_strings_e.IsEmpty() {
+		t.Error("Set should be empty", set_of_strings_e)
+	}
+}
