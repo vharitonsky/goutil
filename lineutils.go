@@ -31,8 +31,3 @@ func ReadLines(file_path string) chan string {
 	}()
 	return ch
 }
-
-func SplitLine(line string) (string, string) {
-	parts := strings.Split(line, "|")
-	return parts[0], parts[1]
-}

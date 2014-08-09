@@ -113,4 +113,13 @@ func TestSet(t *testing.T) {
 	if !set_of_strings_e.IsEmpty() {
 		t.Error("Set should be empty", set_of_strings_e)
 	}
+	set_of_strings_e.Add("s")
+	if !set_of_strings_e.Equals(NewSet([]interface{}{"s"})) {
+		t.Error("Set must be equal 's' after Add ", set_of_strings_e)
+	}
+	set_of_strings_e.Remove("s")
+	if !set_of_strings_e.IsEmpty() {
+		t.Error("Set must empty after Remove ", set_of_strings_e)
+	}
+	
 }
