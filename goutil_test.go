@@ -89,6 +89,11 @@ func TestTimer(t *testing.T) {
 	defer timer.Elapsed("Testing")
 }
 
+func TestMemProfiler(t *testing.T) {
+	memprof := NewMemProfiler()
+	defer memprof.Used("Testing")
+}
+
 func TestSet(t *testing.T) {
 	strings_a := []interface{}{"a", "b", "c", "d"}
 	strings_b := []interface{}{"b", "c", "d", "f", "g"}
@@ -121,5 +126,5 @@ func TestSet(t *testing.T) {
 	if !set_of_strings_e.IsEmpty() {
 		t.Error("Set must empty after Remove ", set_of_strings_e)
 	}
-	
+
 }
